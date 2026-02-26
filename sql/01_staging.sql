@@ -1,5 +1,9 @@
+drop table stg_vgsales_raw;
+
+create schema if not exists staging;
+
 CREATE TABLE stg_vgsales_raw(
-    game_rank INT,
+    rank INT,
     name varchar(255),
     platform TEXT,
     year int,
@@ -11,3 +15,8 @@ CREATE TABLE stg_vgsales_raw(
     other_sales NUMERIC,
     global_sales NUMERIC
 );
+
+select * from stg_vgsales_raw;
+
+alter table stg_vgsales_raw
+	set schema staging;
