@@ -126,7 +126,4 @@ select * from stg_vgsales_raw limit 20;
 		count(*) filter(where publisher is null) as publisher_nulls,
 		count(*) filter (where global_sales is null) as global_sales_nulls
 	from stg_vgsales_raw;
-
-
-
-
+	
