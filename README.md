@@ -15,7 +15,6 @@
 - 🔜 Build **dimensional model (star schema)**: `dim_*` + `fact_sales`
 - 🔜 Create **SQL views** optimized for Power BI consumption
 - 🔜 Build a **Power BI dashboard** (KPIs, trends, regional split, rankings)
-- 🔜 (Optional) Add a small ML layer later (e.g., predicting sales / clustering games)
 
 ---
 
