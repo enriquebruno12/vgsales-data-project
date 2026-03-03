@@ -28,7 +28,7 @@ def main():
     project_root = Path(__file__).resolve().parents[1]
     csv_path = project_root / 'data' / 'raw' / 'vgsales.csv'
 
-    if not csv_path.exists():
+    if not csv_path.exists():s
         raise FileNotFoundError(f'CSV not found in {csv_path}')
     
     print(f'Reading CSV: {csv_path}')

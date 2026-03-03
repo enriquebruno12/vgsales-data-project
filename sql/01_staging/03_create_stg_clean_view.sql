@@ -57,3 +57,9 @@
 	from stg_vgsales_clean
 	group by name, platform, year
 	having count(*) > 1;
+	
+	alter view stg_vgsales_clean
+		set schema staging;
+	
+	alter view stg_vgsales_norm
+		set schema staging;

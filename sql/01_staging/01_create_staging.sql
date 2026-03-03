@@ -1,8 +1,6 @@
-drop table stg_vgsales_raw;
-
 create schema if not exists staging;
 
-CREATE TABLE stg_vgsales_raw(
+CREATE table if not exists stg_vgsales_raw(
     rank INT,
     name varchar(255),
     platform TEXT,
