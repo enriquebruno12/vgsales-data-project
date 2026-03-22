@@ -14,7 +14,7 @@ CREATE table if not exists stg_vgsales_raw(
     global_sales NUMERIC
 );
 
-select * from stg_vgsales_raw;
-
 alter table stg_vgsales_raw
 	set schema staging;
+
+select * from stg_vgsales_raw;

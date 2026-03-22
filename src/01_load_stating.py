@@ -28,7 +28,7 @@ def main():
     project_root = Path(__file__).resolve().parents[1]
     csv_path = project_root / 'data' / 'raw' / 'vgsales.csv'
 
-    if not csv_path.exists():s
+    if not csv_path.exists():
         raise FileNotFoundError(f'CSV not found in {csv_path}')
     
     print(f'Reading CSV: {csv_path}')
@@ -60,7 +60,7 @@ def main():
     engine = get_engine()
 
     with engine.begin() as conn:
-        conn.execute(text('TRUNCATE TABLE stg_vgsales_raw;'))
+        conn.execute(text('TRUNCATE TABLE staging.stg_vgsales_raw;'))
 
     print('Inserting stg_vgsales_raw into Postgres...')
     df.to_sql(
@@ -73,7 +73,7 @@ def main():
     )
 
     with engine.connect() as conn:
-        db_count = conn.execute(text('SELECT COUNT(*) FROM stg_vgsales_raw')).scalar()
+        db_count = conn.execute(text('SELECT COUNT(*) FROM staging.stg_vgsales_raw')).scalar()
     print(f'Inserted lines in Postgres: {db_count}')
 
 if __name__ == '__main__':

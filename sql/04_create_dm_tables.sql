@@ -1,7 +1,5 @@
 -- Creating Datawarehouse star schema
 
-select * from staging.stg_vgsales_clean;
-
 create schema if not exists dw;
 
 -- 1) Dimensions (lookup)
@@ -70,7 +68,13 @@ create table if not exists dw.fact_sales(
 	
 	constraint fk_fact_game
 		foreign key (game_id) references dw.dim_game(game_id)
-		on update cascade on delete restrict
+		on update cascade on delete restrict,
+		
+	constraint chk_na_sales_nonnegative check (na_sales is null or na_sales >= 0),
+	constraint chk_eu_sales_nonnegative check (eu_sales is null or eu_sales >= 0),
+	constraint chk_jp_sales_nonnegative check (jp_sales is null or jp_sales >= 0),
+	constraint chk_other_sales_nonnegative check (other_sales is null or other_sales >= 0),
+	constraint chk_global_sales_nonnegative check (global_sales is null or global_sales >= 0)
 );
 
 -- Additional indexes
@@ -78,3 +82,29 @@ create table if not exists dw.fact_sales(
 create index if not exists ix_dim_game_platform on dw.dim_game(platform_id);
 create index if not exists ix_dim_game_genre on dw.dim_game(genre_id);
 create index if not exists ix_dim_game_publisher on dw.dim_game(publisher_id);
+create index if not exists ix_dim_game_year_key on dw.dim_game(year_key);
+
+/*
+
+
+ Validating...
+
+SELECT table_schema, table_name
+FROM information_schema.tables
+WHERE table_schema = 'dw'
+ORDER BY table_name;
+
+SELECT indexname, tablename
+FROM pg_indexes
+WHERE schemaname = 'dw'
+ORDER BY tablename, indexname;
+
+SELECT
+    tc.table_name,
+    tc.constraint_name,
+    tc.constraint_type
+FROM information_schema.table_constraints tc
+WHERE tc.table_schema = 'dw'
+ORDER BY tc.table_name, tc.constraint_type;
+
+ */
