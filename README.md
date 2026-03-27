@@ -212,12 +212,6 @@ The current Power BI dashboard is a one-page executive overview built on `dw.vw_
 
 ---
 
-## 🖼️ Dashboard Screenshot
-
-![Power BI Dashboard](assets/dashboard-overview.png)
-
----
-
 ## 📂 Repository Structure
 
 ```text
