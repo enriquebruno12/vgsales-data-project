@@ -26,5 +26,13 @@ left join dw.dim_genre g
 	on g.genre_id = dg.genre_id
 left join dw.dim_publisher pub
 	on pub.publisher_id = dg.publisher_id;	
+/*
 
-select * from dw.vw_sales_enriched;
+-- Validating...
+
+select * from dw.vw_sales_enriched;qqqq
+
+select count(*) as vw_lines, (select count(*) from dw.fact_sales) as fact_lines from dw.vw_sales_enriched;
+
+*/
+	

@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f8fbff"/>
+      <stop offset="100%" stop-color="#eef4fb"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#14335f" flood-opacity="0.15"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f4f8a"/>
+    </marker>
+    <style>
+      .title { font: 700 36px 'Segoe UI', Arial, sans-serif; fill: #0d2d5a; }
+      .subtitle { font: 400 18px 'Segoe UI', Arial, sans-serif; fill: #51627d; }
+      .box { fill: white; stroke: #9bb0cb; stroke-width: 2; rx: 24; filter: url(#shadow); }
+      .boxTitle { font: 700 26px 'Segoe UI', Arial, sans-serif; fill: #102f5f; }
+      .boxText { font: 400 18px 'Segoe UI', Arial, sans-serif; fill: #53627d; }
+      .small { font: 400 16px 'Segoe UI', Arial, sans-serif; fill: #6a7891; }
+      .laneTitle { font: 700 18px 'Segoe UI', Arial, sans-serif; fill: #264c7f; letter-spacing: 1px; }
+      .arrow { stroke: #1f4f8a; stroke-width: 4; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #8aa0bd; stroke-width: 3; stroke-dasharray: 10 10; fill: none; marker-end: url(#arrow); }
+      .pill { fill: #edf3fb; stroke: #d4e0f0; stroke-width: 1.5; rx: 14; }
+      .pillText { font: 600 15px 'Segoe UI', Arial, sans-serif; fill: #335b90; }
+      .iconLabel { font: 700 30px 'Segoe UI Emoji','Apple Color Emoji','Noto Color Emoji', sans-serif; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1600" height="900" fill="url(#bg)"/>
+
+  <text x="70" y="75" class="title">VGSales Data Flow</text>
+  <text x="70" y="110" class="subtitle">From raw Kaggle CSV to a Dockerized PostgreSQL warehouse, validated in DBeaver and consumed in Power BI.</text>
+
+  <text x="70" y="165" class="laneTitle">INGESTION &amp; STORAGE</text>
+  <line x1="70" y1="182" x2="1530" y2="182" stroke="#d4dfef" stroke-width="2"/>
+
+  <!-- Box 1 -->
+  <rect x="70" y="220" width="250" height="170" class="box"/>
+  <text x="95" y="282" class="iconLabel">📁</text>
+  <text x="155" y="275" class="boxTitle">Raw CSV</text>
+  <text x="155" y="305" class="boxText">Kaggle VGSales dataset</text>
+  <text x="95" y="340" class="small">Stored locally in</text>
+  <text x="95" y="365" class="small">data/raw/vgsales.csv</text>
+
+  <!-- Box 2 -->
+  <rect x="380" y="220" width="270" height="170" class="box"/>
+  <text x="405" y="282" class="iconLabel">🐍</text>
+  <text x="465" y="275" class="boxTitle">Python Ingestion</text>
+  <text x="465" y="305" class="boxText">pandas + SQLAlchemy</text>
+  <text x="405" y="340" class="small">Loads raw CSV into staging</text>
+  <text x="405" y="365" class="small">using .env credentials</text>
+
+  <!-- Box 3 -->
+  <rect x="710" y="220" width="310" height="170" class="box"/>
+  <text x="735" y="282" class="iconLabel">🐳</text>
+  <text x="795" y="275" class="boxTitle">Docker + PostgreSQL</text>
+  <text x="795" y="305" class="boxText">Local warehouse environment</text>
+  <text x="735" y="340" class="small">Raw table: stg_vgsales_raw</text>
+  <text x="735" y="365" class="small">Reproducible setup across 2 PCs</text>
+
+  <!-- Box 4 -->
+  <rect x="1090" y="220" width="350" height="170" class="box"/>
+  <text x="1115" y="282" class="iconLabel">🧠</text>
+  <text x="1175" y="275" class="boxTitle">SQL Quality &amp; Cleaning</text>
+  <text x="1175" y="305" class="boxText">QA checks + normalization + dedup</text>
+  <text x="1115" y="340" class="small">stg_vgsales_norm → stg_vgsales_clean</text>
+  <text x="1115" y="365" class="small">Rule: keep best row by sales + rank</text>
+
+  <!-- arrows row 1 -->
+  <path d="M320 305 C345 305, 355 305, 380 305" class="arrow"/>
+  <path d="M650 305 C675 305, 685 305, 710 305" class="arrow"/>
+  <path d="M1020 305 C1045 305, 1060 305, 1090 305" class="arrow"/>
+
+  <text x="70" y="470" class="laneTitle">MODELING, VALIDATION &amp; BI</text>
+  <line x1="70" y1="487" x2="1530" y2="487" stroke="#d4dfef" stroke-width="2"/>
+
+  <!-- Box 5 -->
+  <rect x="160" y="535" width="300" height="190" class="box"/>
+  <text x="185" y="600" class="iconLabel">⭐</text>
+  <text x="245" y="592" class="boxTitle">Star Schema (DW)</text>
+  <text x="245" y="622" class="boxText">dim_* + fact_sales</text>
+  <text x="185" y="657" class="small">Grain: (game, platform, year_key)</text>
+  <text x="185" y="682" class="small">Semantic view: dw.vw_sales_enriched</text>
+
+  <!-- Box 6 -->
+  <rect x="585" y="535" width="300" height="190" class="box"/>
+  <text x="610" y="600" class="iconLabel">🧰</text>
+  <text x="670" y="592" class="boxTitle">DBeaver Validation</text>
+  <text x="670" y="622" class="boxText">SQL checks &amp; troubleshooting</text>
+  <text x="610" y="657" class="small">Counts, duplicates, orphan checks,</text>
+  <text x="610" y="682" class="small">top rows and sanity validation</text>
+
+  <!-- Box 7 -->
+  <rect x="1010" y="535" width="360" height="190" class="box"/>
+  <text x="1035" y="600" class="iconLabel">📊</text>
+  <text x="1095" y="592" class="boxTitle">Power BI Dashboard</text>
+  <text x="1095" y="622" class="boxText">KPI + trend + regional split + rankings</text>
+  <text x="1035" y="657" class="small">Import from dw.vw_sales_enriched</text>
+  <text x="1035" y="682" class="small">One-page executive sales overview</text>
+
+  <!-- arrows row 2 -->
+  <path d="M460 630 C500 630, 535 630, 585 630" class="arrow"/>
+  <path d="M885 630 C925 630, 960 630, 1010 630" class="arrow"/>
+
+  <!-- drop from cleaning to DW -->
+  <path d="M1265 390 C1265 450, 1110 470, 310 530" class="dash"/>
+  <!-- DB to DBeaver -->
+  <path d="M865 390 C865 465, 735 500, 735 535" class="dash"/>
+
+  <!-- Pills -->
+  <rect x="120" y="785" width="280" height="42" class="pill"/>
+  <text x="145" y="812" class="pillText">Reproducible environment</text>
+
+  <rect x="445" y="785" width="290" height="42" class="pill"/>
+  <text x="470" y="812" class="pillText">SQL-first transformation logic</text>
+
+  <rect x="780" y="785" width="250" height="42" class="pill"/>
+  <text x="805" y="812" class="pillText">Dimensional modeling</text>
+
+  <rect x="1070" y="785" width="290" height="42" class="pill"/>
+  <text x="1095" y="812" class="pillText">BI-ready reporting layer</text>
+</svg>
